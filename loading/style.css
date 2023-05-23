@@ -1,0 +1,78 @@
+/* CSS */
+
+* {
+  box-sizing: border-box;
+}
+
+.loading {
+  border: 1px solid black;
+  width: 42px;
+  height: 42px;
+}
+
+.loading__item::before {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  display: inline-block;
+  position: relative;
+  animation: loading 2s infinite cubic-bezier(0, 0, 0.04, 1.21);
+}
+
+.loading__item::after {
+  content: "";
+  width: 20px;
+  height: 20px;
+  background-color: blue;
+  display: inline-block;
+  position: relative;
+  animation: loading1 2s infinite cubic-bezier(0, 0, 0.04, 1.21);
+}
+
+@keyframes loading {
+  0%{
+    left:0;
+    top:0;
+  }
+  25%{
+    left:20px;
+    top:0;
+  }
+  50%{
+    left:20px;
+    top:20px;
+  }
+  75%{
+    left:0;
+    top:20px;
+  }
+  100%{
+    left:0;
+    top:0;
+  }
+
+}
+
+@keyframes loading1 {
+  0%{
+    left:0;
+    top:20px;
+  }
+  25%{
+    left:-20px;
+    top:20px;
+  }
+  50%{
+    left:-20px;
+    top:0;
+  }
+  75%{
+    left:0;
+    top:0;
+  }
+  100%{
+    left:0;
+    top:20px;
+  }
+}

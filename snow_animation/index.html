@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8">
+    <title>눈 내리는 사걀의 마을</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <script>
+      var screenWidth = window.innerWidth;
+      var screenHeight = window.innerHeight - 100;
+
+      function createSnowflake() {
+        var snowflake = document.createElement("div");
+        snowflake.className = "snowflake";
+        snowflake.innerHTML = "*";
+        snowflake.style.left = Math.random() * screenWidth * 2 + "px";
+        snowflake.style.top = Math.random() * screenHeight * -1 + "px";
+        document.body.appendChild(snowflake);
+        animateSnowflake(snowflake);
+      }
+
+      function animateSnowflake(snowflake) {
+        var startTop = parseFloat(snowflake.style.top);
+        var endTop = screenHeight;
+
+        var duration = 3000;
+
+        var startTime = Date.now();
+
+        function step() {
+          var currentTime = Date.now();
+          var elapsedTime = currentTime - startTime;
+          var progress = elapsedTime / duration;
+
+          var currentTop = startTop + (endTop - startTop) * progress;
+
+          snowflake.style.top = currentTop + "px";
+
+          if (currentTop < screenHeight) {
+            requestAnimationFrame(step);
+          } else {
+            snowflake.parentNode.removeChild(snowflake);
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      function startSnowfall() {
+        setInterval(createSnowflake, 500);
+      }
+
+      startSnowfall();
+    </script>
+  </body>
+</html>

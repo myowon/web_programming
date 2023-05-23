@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> Let's leave </title>
+</head>
+<body>
+  <div class='box-1'>
+    <h1>h1 tag</h1>
+    <h2>h2 tag</h2>
+  </div>
+  <div class='box-2'>
+    <h3>h3 tag</h3>
+  </div>
+  <script>
+    // 여기에 코드를 작성해주세요.
+    //const el = document.querySelector('h2');
+    //el.parentElement.removeChild(el);
+    const el = document.querySelector('.box-1');
+    const e = el.parentNode.childNodes[1].querySelector('h2');
+    e.parentElement.removeChild(e);
+    
+    const el2 = document.querySelector('.box-2');
+    el2.appendChild(e)
+  </script>
+</body>
+</html>
