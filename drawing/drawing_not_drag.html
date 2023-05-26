@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>마우스 클릭 없이 캔버스에 그림 그리기</title>
+</head>
+<body onload="init()">
+    <h3>마우스 클릭이나 드래그 없이 그림 그려 보세요</h3>
+    <hr>
+    <canvas id="myCanvas" style="background-color: aliceblue" width="700" height="500"></canvas>
+    <br>
+    <label for="color">선의 색상: </label>
+    <input type="color" id="color" onchange="setColor()">
+    <br>
+    <label for="thickness">선의 굵기: </label>
+    <input type="number" id="thickness" value="2" onchange="setThickness()">
+    <!--<input type="range" id="thickness" min="1" max="10" value="2" step="1" onchange="setThickness()">-->
+    <script>
+        let canvas, context;
+        let lineColor = "black";
+        let lineWidth = 2;
+    
+        function init() {
+            canvas = document.getElementById("myCanvas");
+            context = canvas.getContext("2d");
+    
+            context.lineWidth = lineWidth;
+            context.strokeStyle = lineColor;
+    
+            canvas.addEventListener("mousemove", draw, false);
+        }
+    
+        function draw(e) {
+            let rect = canvas.getBoundingClientRect();
+            let x = e.clientX - rect.left;
+            let y = e.clientY - rect.top;
+    
+            context.lineTo(x, y);
+            context.stroke();
+        }
+    
+        function setColor() {
+            lineColor = document.getElementById("color").value;
+            context.strokeStyle = lineColor;
+        }
+    
+        function setThickness() {
+            lineWidth = document.getElementById("thickness").value;
+            context.lineWidth = lineWidth;
+        }
+    </script>
+</body>
+</html>
